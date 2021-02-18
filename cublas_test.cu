@@ -21,6 +21,7 @@ void run(ftype *i1, ftype  *i2, ftype *o1, int d){
 	ftype beta = 0.0;
 	cublasSgemm(h, CUBLAS_OP_N, CUBLAS_OP_N, d, d, d, &alpha, d_i1, d, d_i2, d, &beta, d_o1, d);
 	cudaMemcpy(o1, d_o1, ds, cudaMemcpyDeviceToHost);
+	cublasDestroy(h);
 	
 	cudaFree(d_i1);
 	cudaFree(d_i2);
